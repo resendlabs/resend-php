@@ -1,0 +1,6 @@
+php:
+  version: 1.0.0
+  packagename: resendlabs/resend-php
+  namespace: ResendLabs\ResendSDK
+sdkclassname: resend
+telemetryenabled: true
