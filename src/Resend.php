@@ -17,8 +17,8 @@ class Resend
 	private ?models\shared\Security $_security;
 	private string $_serverUrl;
 	private string $_language = "php";
-	private string $_sdkVersion = "1.1.0";
-	private string $_genVersion = "1.3.2";
+	private string $_sdkVersion = "1.1.1";
+	private string $_genVersion = "1.3.3";
 
 	public static function builder(): ResendBuilder
 	{
