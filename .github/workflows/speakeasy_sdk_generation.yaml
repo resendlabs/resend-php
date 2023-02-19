@@ -18,7 +18,7 @@ jobs:
       - uses: speakeasy-api/sdk-generation-action@v10
         with:
           speakeasy_version: latest
-          openapi_doc_location: https://github.com/resendlabs/resend-openapi/blob/main/resend.yaml
+          openapi_doc_location: https://raw.githubusercontent.com/resendlabs/resend-openapi/main/resend.yaml
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           languages: |-
             - php
