@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\models\shared;
+namespace ResendLabs\ResendSDK\Models\Shared;
 
-use \ResendLabs\ResendSDK\utils\SpeakeasyMetadata;
+use \ResendLabs\ResendSDK\Utils\SpeakeasyMetadata;
 
 class SchemeBearerAuth
 {

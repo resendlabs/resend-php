@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace ResendLabs\ResendSDK;
 
-class Emails 
+class Email 
 {
+	// SDK private variables namespaced with _ to avoid conflicts with API models
 	private \GuzzleHttp\ClientInterface $_defaultClient;
 	private \GuzzleHttp\ClientInterface $_securityClient;
 	private string $_serverUrl;
@@ -26,37 +27,34 @@ class Emails
     /**
      * sendEmail - Send an email
     */
-    public function sendEmail(\ResendLabs\ResendSDK\models\operations\SendEmailRequest $request): \ResendLabs\ResendSDK\models\operations\SendEmailResponse
+    public function sendEmail(\ResendLabs\ResendSDK\Models\Operations\SendEmailRequest $request): \ResendLabs\ResendSDK\Models\Operations\SendEmailResponse
     {
         $baseUrl = $this->_serverUrl;
-        $url = utils\Utils::generateURL($baseUrl, '/emails');
+        $url = Utils\Utils::generateURL($baseUrl, '/email');
         
         $options = ['http_errors' => false];
-        $body = utils\Utils::serializeRequestBody($request);
-        if (is_null($body)) {
+        $body = Utils\Utils::serializeRequestBody($request);
+        if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $options = array_merge_recursive($options, $body);
-        
         $options['headers']['user-agent'] = sprintf('speakeasy-sdk/%s %s %s', $this->_language, $this->_sdkVersion, $this->_genVersion);
         
-        $client = $this->_securityClient;
+        $httpResponse = $this->_securityClient->request('POST', $url, $options);
         
-        $httpRes = $client->request('POST', $url, $options);
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $contentType = $httpRes->getHeader('Content-Type')[0] ?? '';
-
-        $res = new \ResendLabs\ResendSDK\models\operations\SendEmailResponse();
-        $res->statusCode = $httpRes->getStatusCode();
-        $res->contentType = $contentType;
+        $response = new \ResendLabs\ResendSDK\Models\Operations\SendEmailResponse();
+        $response->statusCode = $httpResponse->getStatusCode();
+        $response->contentType = $contentType;
         
-        if ($httpRes->getStatusCode() == 200) {
-            if (utils\Utils::matchContentType($contentType, 'application/json')) {
-                $serializer = utils\JSON::createSerializer();
-                $res->sendEmailResponse = $serializer->deserialize($httpRes->getBody()->__toString(), 'ResendLabs\ResendSDK\models\shared\SendEmailResponse', 'json');
+        if ($httpResponse->getStatusCode() === 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $response->sendEmailResponse = $serializer->deserialize((string)$httpResponse->getBody(), 'ResendLabs\ResendSDK\Models\Shared\SendEmailResponse', 'json');
             }
         }
 
-        return $res;
+        return $response;
     }
 }

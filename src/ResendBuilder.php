@@ -7,7 +7,7 @@ namespace ResendLabs\ResendSDK;
 class ResendBuilder
 {
     private ?\GuzzleHttp\ClientInterface $client;
-    private ?models\shared\Security $security;
+    private ?Models\Shared\Security $security;
     private string $serverUrl;
     /** @var array<string, string> */
     private ?array $params;
@@ -25,7 +25,7 @@ class ResendBuilder
         return $this;
     }
     
-    public function setSecurity(models\shared\Security $security): ResendBuilder
+    public function setSecurity(Models\Shared\Security $security): ResendBuilder
     {
         $this->security = $security;
         return $this;
@@ -40,7 +40,7 @@ class ResendBuilder
     public function setServerURL(string $serverUrl, ?array $params = null): ResendBuilder
     {
         $this->serverUrl = $serverUrl;
-        if (!is_null($params)) {
+        if ($params !== null) {
             $this->params = $params;
         }
         return $this;

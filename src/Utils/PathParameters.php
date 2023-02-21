@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use ReflectionProperty;
 
@@ -16,17 +16,17 @@ class PathParameters
     {
         $parsed = [];
 
-        if (is_null($pathParams)) {
+        if ($pathParams === null) {
             return $parsed;
         }
 
         foreach ($pathParams as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $metadata = $this->parsePathParamsMetadata(new ReflectionProperty(get_class($pathParams), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 continue;
             }
 
@@ -56,12 +56,12 @@ class PathParameters
                 $vals = [];
 
                 foreach ($value as $field => $fieldValue) { /** @phpstan-ignore-line */
-                    if (is_null($fieldValue)) {
+                    if ($fieldValue === null) {
                         continue;
                     }
 
                     $fieldMetadata = $this->parsePathParamsMetadata(new ReflectionProperty(get_class($value), $field));
-                    if (is_null($fieldMetadata)) {
+                    if ($fieldMetadata === null) {
                         continue;
                     }
 
@@ -104,12 +104,12 @@ class PathParameters
     private function parsePathParamsMetadata(ReflectionProperty $property): ParamsMetadata | null
     {
         $metadataStr = SpeakeasyMetadata::find($property->getAttributes(SpeakeasyMetadata::class), "pathParam");
-        if (is_null($metadataStr)) {
+        if ($metadataStr === null) {
             return null;
         }
 
         $metadata = ParamsMetadata::parse($metadataStr);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 

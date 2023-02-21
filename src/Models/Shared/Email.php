@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\models\shared;
+namespace ResendLabs\ResendSDK\Models\Shared;
 
 
 
@@ -26,11 +26,6 @@ class Email
     #[\JMS\Serializer\Annotation\Type('string')]
     #[\JMS\Serializer\Annotation\SkipWhenEmpty]
     public ?string $html = null;
-    
-    #[\JMS\Serializer\Annotation\SerializedName('react')]
-    #[\JMS\Serializer\Annotation\Type('string')]
-    #[\JMS\Serializer\Annotation\SkipWhenEmpty]
-    public ?string $react = null;
     
     #[\JMS\Serializer\Annotation\SerializedName('reply_to')]
     #[\JMS\Serializer\Annotation\Type('string')]
@@ -56,7 +51,6 @@ class Email
 		$this->cc = null;
 		$this->from = "";
 		$this->html = null;
-		$this->react = null;
 		$this->replyTo = null;
 		$this->subject = "";
 		$this->text = null;

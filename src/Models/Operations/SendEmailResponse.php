@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\models\operations;
+namespace ResendLabs\ResendSDK\Models\Operations;
 
 
 
@@ -10,7 +10,7 @@ class SendEmailResponse
 {
     public string $contentType;
     
-    public ?\ResendLabs\ResendSDK\models\shared\SendEmailResponse $sendEmailResponse = null;
+    public ?\ResendLabs\ResendSDK\Models\Shared\SendEmailResponse $sendEmailResponse = null;
     
     public int $statusCode;
     
