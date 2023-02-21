@@ -1,4 +1,4 @@
-# <no value>
+# resendlabs/resend-php
 
 <!-- Start SDK Installation -->
 ## SDK Installation
