@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use ReflectionProperty;
 
@@ -20,12 +20,12 @@ class Security
         ];
 
         foreach ($security as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $metadata = $this->parseSecurityMetadata(new ReflectionProperty(get_class($security), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 continue;
             }
 
@@ -51,12 +51,12 @@ class Security
         ];
 
         foreach ($option as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $metadata = $this->parseSecurityMetadata(new ReflectionProperty(get_class($option), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 continue;
             }
 
@@ -85,12 +85,12 @@ class Security
         ];
 
         foreach ($scheme as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $fieldMetadata = $this->parseSecurityMetadata(new ReflectionProperty(get_class($scheme), $field));
-            if (is_null($fieldMetadata) || empty($fieldMetadata->name)) {
+            if ($fieldMetadata === null || empty($fieldMetadata->name)) {
                 continue;
             }
 
@@ -142,12 +142,12 @@ class Security
         $password = "";
 
         foreach ($scheme as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $fieldMetadata = $this->parseSecurityMetadata(new ReflectionProperty(get_class($scheme), $field));
-            if (is_null($fieldMetadata) || empty($fieldMetadata->name)) {
+            if ($fieldMetadata === null || empty($fieldMetadata->name)) {
                 continue;
             }
 
@@ -172,12 +172,12 @@ class Security
     private function parseSecurityMetadata(ReflectionProperty $property): SecurityMetadata | null
     {
         $metadataStr = SpeakeasyMetadata::find($property->getAttributes(SpeakeasyMetadata::class), "security");
-        if (is_null($metadataStr)) {
+        if ($metadataStr === null) {
             return null;
         }
 
         $metadata = SecurityMetadata::parse($metadataStr);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 

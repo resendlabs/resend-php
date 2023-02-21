@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use Attribute;
 
@@ -33,7 +33,7 @@ class SpeakeasyMetadata
                 return null;
             }
 
-            if ($prefix[0] == $type) {
+            if ($prefix[0] === $type) {
                 return $arguments[0];
             }
         }

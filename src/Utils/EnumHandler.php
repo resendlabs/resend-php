@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;

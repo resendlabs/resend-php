@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use ReflectionProperty;
 
@@ -16,17 +16,17 @@ class QueryParameters
     {
         $parts = [];
 
-        if (is_null($queryParams)) {
+        if ($queryParams === null) {
             return null;
         }
 
         foreach ($queryParams as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $metadata = $this->parseQueryParamsMetadata(new ReflectionProperty(get_class($queryParams), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 continue;
             }
 
@@ -84,12 +84,12 @@ class QueryParameters
         switch (gettype($value)) {
             case "object":
                 foreach ($value as $field => $val) { /** @phpstan-ignore-line */
-                    if (is_null($val)) {
+                    if ($val === null) {
                         continue;
                     }
 
                     $fieldMetaData = $this->parseQueryParamsMetadata(new ReflectionProperty(get_class($value), $field));
-                    if (is_null($fieldMetaData)) {
+                    if ($fieldMetaData === null) {
                         continue;
                     }
 
@@ -113,7 +113,7 @@ class QueryParameters
             case "array":
                 if (!array_is_list($value)) {
                     foreach ($value as $key => $val) {
-                        if (is_null($val)) {
+                        if ($val === null) {
                             continue;
                         }
 
@@ -154,12 +154,12 @@ class QueryParameters
                 $items = [];
 
                 foreach ($value as $field => $val) { /** @phpstan-ignore-line */
-                    if (is_null($val)) {
+                    if ($val === null) {
                         continue;
                     }
 
                     $fieldMetaData = $this->parseQueryParamsMetadata(new ReflectionProperty(get_class($value), $field));
-                    if (is_null($fieldMetaData)) {
+                    if ($fieldMetaData === null) {
                         continue;
                     }
 
@@ -198,7 +198,7 @@ class QueryParameters
                     $items = [];
 
                     foreach ($value as $key => $val) {
-                        if (is_null($val)) {
+                        if ($val === null) {
                             continue;
                         }
 
@@ -245,12 +245,12 @@ class QueryParameters
     private function parseQueryParamsMetadata(ReflectionProperty $property): ParamsMetadata | null
     {
         $metadataStr = SpeakeasyMetadata::find($property->getAttributes(SpeakeasyMetadata::class), "queryParam");
-        if (is_null($metadataStr)) {
+        if ($metadataStr === null) {
             return null;
         }
 
         $metadata = ParamsMetadata::parse($metadataStr);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 

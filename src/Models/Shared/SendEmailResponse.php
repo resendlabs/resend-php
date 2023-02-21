@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\models\shared;
+namespace ResendLabs\ResendSDK\Models\Shared;
 
 
 

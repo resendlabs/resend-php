@@ -16,7 +16,7 @@ composer require "resendlabs/resend-php"
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
-Coming soon !
+
 <!-- End SDK Example Usage -->
 
 ## Authentication
@@ -31,7 +31,7 @@ Authorization: Bearer re_123
 ## SDK Available Operations
 
 
-### emails
+### email
 
 * `sendEmail` - Send an email
 <!-- End SDK Available Operations -->
