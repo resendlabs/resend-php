@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use ReflectionProperty;
 
@@ -14,7 +14,7 @@ class RequestBodies
      */
     public function serializeRequestBody(mixed $request): array | null
     {
-        if (is_null($request)) {
+        if ($request === null) {
             return null;
         }
 
@@ -23,22 +23,22 @@ class RequestBodies
         }
 
         $requestVal = $request->request;
-        if (is_null($requestVal)) {
+        if ($requestVal === null) {
             return null;
         }
 
         $metadata = $this->parseRequestMetadata(new ReflectionProperty(get_class($request), 'request'));
-        if (!is_null($metadata)) {
+        if ($metadata !== null) {
             return $this->serializeContentType('request', $metadata->mediaType, $requestVal);
         }
 
         foreach ($requestVal as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $metadata = $this->parseRequestMetadata(new ReflectionProperty(get_class($requestVal), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 throw new \Exception("Missing request metadata for field $field");
             }
 
@@ -56,7 +56,7 @@ class RequestBodies
      */
     private function serializeContentType(string $fieldName, string $mediaType, mixed $value): array | null
     {
-        if (is_null($value)) {
+        if ($value === null) {
             return null;
         }
 
@@ -94,12 +94,12 @@ class RequestBodies
         ];
 
         foreach ($value as $field => $val) {
-            if (is_null($val)) {
+            if ($val === null) {
                 continue;
             }
 
             $metadata = $this->parseMultipartMetadata(new ReflectionProperty(get_class($value), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 continue;
             }
 
@@ -117,7 +117,7 @@ class RequestBodies
             } else {
                 $dateTimeFormat = $metadata->dateTimeFormat;
 
-                if (gettype($val) == 'array' && array_is_list($val)) {
+                if (gettype($val) === 'array' && array_is_list($val)) {
                     foreach ($value as $item) {
                         $options['multipart'][] = [
                             'name' => $metadata->name . '[]',
@@ -151,12 +151,12 @@ class RequestBodies
         $content = "";
 
         foreach ($value as $field => $val) { /** @phpstan-ignore-line */
-            if (is_null($val)) {
+            if ($val === null) {
                 continue;
             }
 
             $metadata = $this->parseMultipartMetadata(new ReflectionProperty(get_class($value), $field));
-            if (is_null($metadata) || (!$metadata->content && empty($metadata->name))) {
+            if ($metadata === null || (!$metadata->content && empty($metadata->name))) {
                 continue;
             }
 
@@ -193,12 +193,12 @@ class RequestBodies
         switch (gettype($value)) {
             case 'object':
                 foreach ($value as $field => $val) { /** @phpstan-ignore-line */
-                    if (is_null($val)) {
+                    if ($val === null) {
                         continue;
                     }
 
                     $metadata = $this->parseFormMetadata(new ReflectionProperty(get_class($value), $field));
-                    if (is_null($metadata)) {
+                    if ($metadata === null) {
                         continue;
                     }
 
@@ -259,12 +259,12 @@ class RequestBodies
                             $items = [];
 
                             foreach ($value as $field => $val) { /** @phpstan-ignore-line */
-                                if (is_null($val)) {
+                                if ($val === null) {
                                     continue;
                                 }
 
                                 $fieldMetadata = $this->parseFormMetadata(new ReflectionProperty(get_class($value), $field));
-                                if (is_null($fieldMetadata) || empty($fieldMetadata->name)) {
+                                if ($fieldMetadata === null || empty($fieldMetadata->name)) {
                                     continue;
                                 }
 
@@ -324,7 +324,7 @@ class RequestBodies
         }
 
         $metadata = RequestMetadata::parse($arguments[0]);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 
@@ -334,12 +334,12 @@ class RequestBodies
     private function parseMultipartMetadata(ReflectionProperty $property): MultipartMetadata | null
     {
         $metadataStr = SpeakeasyMetadata::find($property->getAttributes(SpeakeasyMetadata::class), "multipartForm");
-        if (is_null($metadataStr)) {
+        if ($metadataStr === null) {
             return null;
         }
 
         $metadata = MultipartMetadata::parse($metadataStr);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 
@@ -349,12 +349,12 @@ class RequestBodies
     private function parseFormMetadata(ReflectionProperty $property): FormMetadata | null
     {
         $metadataStr = SpeakeasyMetadata::find($property->getAttributes(SpeakeasyMetadata::class), "form");
-        if (is_null($metadataStr)) {
+        if ($metadataStr === null) {
             return null;
         }
 
         $metadata = FormMetadata::parse($metadataStr);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 

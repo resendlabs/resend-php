@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 use ReflectionProperty;
 
@@ -16,17 +16,17 @@ class Headers
     {
         $out = [];
 
-        if (is_null($headers)) {
+        if ($headers === null) {
             return $out;
         }
 
         foreach ($headers as $field => $value) {
-            if (is_null($value)) {
+            if ($value === null) {
                 continue;
             }
 
             $metadata = $this->parseHeaderMetadata(new ReflectionProperty(get_class($headers), $field));
-            if (is_null($metadata)) {
+            if ($metadata === null) {
                 continue;
             }
 
@@ -49,12 +49,12 @@ class Headers
                 $items = [];
 
                 foreach ($value as $field => $fieldValue) { /** @phpstan-ignore-line */
-                    if (is_null($fieldValue)) {
+                    if ($fieldValue === null) {
                         continue;
                     }
 
                     $fieldMetadata = $this->parseHeaderMetadata(new ReflectionProperty(get_class($value), $field));
-                    if (is_null($fieldMetadata) || empty($fieldMetadata->name)) {
+                    if ($fieldMetadata === null || empty($fieldMetadata->name)) {
                         continue;
                     }
 
@@ -74,7 +74,7 @@ class Headers
                     $items = [];
 
                     foreach ($value as $field => $fieldValue) {
-                        if (is_null($fieldValue)) {
+                        if ($fieldValue === null) {
                             continue;
                         }
 
@@ -96,12 +96,12 @@ class Headers
     private function parseHeaderMetadata(ReflectionProperty $property): ParamsMetadata | null
     {
         $metadataStr = SpeakeasyMetadata::find($property->getAttributes(SpeakeasyMetadata::class), "header");
-        if (is_null($metadataStr)) {
+        if ($metadataStr === null) {
             return null;
         }
 
         $metadata = ParamsMetadata::parse($metadataStr);
-        if (is_null($metadata)) {
+        if ($metadata === null) {
             return null;
         }
 

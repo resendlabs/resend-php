@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
 class Utils
 {
@@ -40,7 +40,7 @@ class Utils
 
     public static function matchContentType(string $contentType, string $pattern): bool
     {
-        if ($contentType === $pattern || $pattern == "*" || $pattern === "*/*") {
+        if ($contentType === $pattern || $pattern === "*" || $pattern === "*/*") {
             return true;
         }
 
@@ -72,7 +72,7 @@ class Utils
         $rb = new RequestBodies();
         $body = $rb->serializeRequestBody($request);
 
-        if (is_null($body)) {
+        if ($body === null) {
             return [];
         }
 
@@ -89,7 +89,7 @@ class Utils
 
         $query = $qp->parseQueryParams($queryParams);
 
-        if (is_null($query)) {
+        if ($query === null) {
             return [];
         }
 

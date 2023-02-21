@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace ResendLabs\ResendSDK\utils;
+namespace ResendLabs\ResendSDK\Utils;
 
-class MultipartMetadata
+class FormMetadata
 {
     public string $name;
-    public bool $file;
-    public bool $content;
     public bool $json;
+    public string $style;
+    public bool $explode;
     public string $dateTimeFormat;
 
-    public static function parse(string $metadata): MultipartMetadata | null
+    public static function parse(string $metadata): FormMetadata | null
     {
-        if (!str_starts_with($metadata, "multipartForm:")) {
+        if (!str_starts_with($metadata, "form:")) {
             return null;
         }
 
-        $metadata = remove_prefix($metadata, "multipartForm:");
+        $metadata = remove_prefix($metadata, "form:");
 
         $name = "";
-        $file = false;
-        $content = false;
         $json = false;
+        $style = "form";
+        $explode = true;
         $dateTimeFormat = "";
 
         $options = explode(",", $metadata);
@@ -38,14 +38,14 @@ class MultipartMetadata
                 case "name":
                     $name = $parts[1];
                     break;
-                case "file":
-                    $file = $parts[1] === "true";
-                    break;
-                case "content":
-                    $content = $parts[1] === "true";
-                    break;
                 case "json":
                     $json = $parts[1] === "true";
+                    break;
+                case "style":
+                    $style = $parts[1];
+                    break;
+                case "explode":
+                    $explode = $parts[1] === "true";
                     break;
                 case "dateTimeFormat":
                     $dateTimeFormat = $parts[1];
@@ -53,15 +53,15 @@ class MultipartMetadata
             }
         }
 
-        return new MultipartMetadata($name, $file, $content, $json, $dateTimeFormat);
+        return new FormMetadata($name, $json, $style, $explode, $dateTimeFormat);
     }
 
-    private function __construct(string $name, bool $file, bool $content, bool $json, string $dateTimeFormat)
+    private function __construct(string $name, bool $json, string $style, bool $explode, string $dateTimeFormat)
     {
         $this->name = $name;
-        $this->file = $file;
-        $this->content = $content;
         $this->json = $json;
+        $this->style = $style;
+        $this->explode = $explode;
         $this->dateTimeFormat = $dateTimeFormat;
     }
 }

@@ -10,15 +10,16 @@ class Resend
 		'https://api.resend.com',
 	];
   	
-  	public Emails $emails;	
+  	public Email $email;	
 
+	// SDK private variables namespaced with _ to avoid conflicts with API models
 	private ?\GuzzleHttp\ClientInterface $_defaultClient;
 	private ?\GuzzleHttp\ClientInterface $_securityClient;
-	private ?models\shared\Security $_security;
+	private ?Models\Shared\Security $_security;
 	private string $_serverUrl;
 	private string $_language = "php";
-	private string $_sdkVersion = "1.1.1";
-	private string $_genVersion = "1.3.3";
+	private string $_sdkVersion = "1.2.0";
+	private string $_genVersion = "1.4.2";
 
 	public static function builder(): ResendBuilder
 	{
@@ -27,39 +28,39 @@ class Resend
 
 	/**
 	 * @param \GuzzleHttp\ClientInterface|null $client	 
-	 * @param models\shared\Security|null $security
+	 * @param Models\Shared\Security|null $security
 	 * @param string $serverUrl
 	 * @param array<string, string>|null $params
 	 */
-	public function __construct(?\GuzzleHttp\ClientInterface $client, ?models\shared\Security $security, string $serverUrl, ?array $params)
+	public function __construct(?\GuzzleHttp\ClientInterface $client, ?Models\Shared\Security $security, string $serverUrl, ?array $params)
 	{
 		$this->_defaultClient = $client;
 		
-		if (is_null($this->_defaultClient)) {
+		if ($this->_defaultClient === null) {
 			$this->_defaultClient = new \GuzzleHttp\Client([
             	'timeout' => 60,
 			]);
 		}
 
 		$this->_securityClient = null;
-		if (!is_null($security)) {
+		if ($security !== null) {
 			$this->_security = $security;
-			$this->_securityClient = utils\Utils::configureSecurityClient($this->_defaultClient, $this->_security);
+			$this->_securityClient = Utils\Utils::configureSecurityClient($this->_defaultClient, $this->_security);
 		}
 		
-		if (is_null($this->_securityClient)) {
+		if ($this->_securityClient === null) {
 			$this->_securityClient = $this->_defaultClient;
 		}
 
 		if (!empty($serverUrl)) {
-			$this->_serverUrl = utils\Utils::replaceParameters($serverUrl, $params);
+			$this->_serverUrl = Utils\Utils::replaceParameters($serverUrl, $params);
 		}
 		
 		if (empty($this->_serverUrl)) {
 			$this->_serverUrl = $this::SERVERS[0];
 		}
 		
-		$this->emails = new Emails(
+		$this->email = new Email(
 			$this->_defaultClient,
 			$this->_securityClient,
 			$this->_serverUrl,
