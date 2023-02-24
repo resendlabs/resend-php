@@ -1,8 +1,15 @@
-# Resend PHP SDK
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
-Resend is the email platform for developers. Learn more on our [docsite](https://resend.com/docs/api-reference/concepts) 
+<div align="center">
+    <picture>
+        <source srcset="https://user-images.githubusercontent.com/68016351/221070336-93af990c-4e39-41aa-8f0e-81ce779ed398.svg
+" media="(prefers-color-scheme: dark)" width="500">
+        <img src="https://user-images.githubusercontent.com/68016351/221070388-c5faf78a-d3b7-440b-a300-c2e7b635279b.svg" width="500">
+    </picture>
+   <p>Resend is the email platform for developers.</p>
+   <a href="https://resend.com/docs/api-reference/concepts"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000000&style=for-the-badge" /></a>
+   <a href=""><img src="https://img.shields.io/github/actions/workflow/status/resendlabs/resend-php/speakeasy_sdk_generation.yaml?style=for-the-badge" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+  <a href="https://github.com/resendlabs/resend-php/releases"><img src="https://img.shields.io/github/v/release/resendlabs/resend-php?sort=semver&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
@@ -14,11 +21,6 @@ composer require "resendlabs/resend-php"
 ```
 <!-- End SDK Installation -->
 
-## SDK Example Usage
-<!-- Start SDK Example Usage -->
-
-<!-- End SDK Example Usage -->
-
 ## Authentication
 
 To authenticate you need to add an Authorization header with the contents of the header being Bearer re_123456789 where re_123456789 is your API Key. First, you need to get an API key, which is available in the [Resend Dashboard](https://resend.com/login).
@@ -26,6 +28,11 @@ To authenticate you need to add an Authorization header with the contents of the
 ```bash
 Authorization: Bearer re_123
 ```
+
+## SDK Example Usage (Coming soon!) 
+<!-- Start SDK Example Usage -->
+
+<!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
 ## SDK Available Operations
