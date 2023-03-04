@@ -6,6 +6,7 @@ namespace ResendLabs\ResendSDK;
 
 class Email 
 {
+	
 	// SDK private variables namespaced with _ to avoid conflicts with API models
 	private \GuzzleHttp\ClientInterface $_defaultClient;
 	private \GuzzleHttp\ClientInterface $_securityClient;
@@ -27,7 +28,9 @@ class Email
     /**
      * sendEmail - Send an email
     */
-    public function sendEmail(\ResendLabs\ResendSDK\Models\Operations\SendEmailRequest $request): \ResendLabs\ResendSDK\Models\Operations\SendEmailResponse
+    public function sendEmail(
+        \ResendLabs\ResendSDK\Models\Operations\SendEmailRequest $request,
+    ): \ResendLabs\ResendSDK\Models\Operations\SendEmailResponse
     {
         $baseUrl = $this->_serverUrl;
         $url = Utils\Utils::generateURL($baseUrl, '/email');
@@ -47,6 +50,7 @@ class Email
         $response = new \ResendLabs\ResendSDK\Models\Operations\SendEmailResponse();
         $response->statusCode = $httpResponse->getStatusCode();
         $response->contentType = $contentType;
+        $response->rawResponse = $httpResponse;
         
         if ($httpResponse->getStatusCode() === 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
