@@ -8,6 +8,6 @@ generation:
   sdkClassName: resend
   sdkFlattening: true
 php:
-  version: 1.6.1
+  version: 1.6.2
   namespace: ResendLabs\ResendSDK
   packageName: resendlabs/resend-php
