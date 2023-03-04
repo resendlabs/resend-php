@@ -14,7 +14,7 @@ class Utils
         return new SecurityClient($client, $clientOptions);
     }
 
-    public static function replaceParameters(string $url, mixed $params): string
+    public static function templateUrl(string $url, mixed $params): string
     {
         $url = preg_replace_callback('/{([^}]+)}/', function ($matches) use ($params) {
             $key = $matches[1];
@@ -35,7 +35,7 @@ class Utils
         $pp = new PathParameters();
         $params = $pp->parsePathParams($pathParams);
 
-        return Utils::replaceParameters($url, $params);
+        return Utils::templateUrl($url, $params);
     }
 
     public static function matchContentType(string $contentType, string $pattern): bool

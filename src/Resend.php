@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ResendLabs\ResendSDK;
 
+/**
+ * SDK Documentation: Resend is the email platform for developers.
+ */
 class Resend
 {
 	public const SERVERS = [
@@ -18,8 +21,8 @@ class Resend
 	private ?Models\Shared\Security $_security;
 	private string $_serverUrl;
 	private string $_language = "php";
-	private string $_sdkVersion = "1.5.0";
-	private string $_genVersion = "1.7.1";
+	private string $_sdkVersion = "1.6.0";
+	private string $_genVersion = "1.8.2";
 
 	public static function builder(): ResendBuilder
 	{
@@ -53,7 +56,7 @@ class Resend
 		}
 
 		if (!empty($serverUrl)) {
-			$this->_serverUrl = Utils\Utils::replaceParameters($serverUrl, $params);
+			$this->_serverUrl = Utils\Utils::templateUrl($serverUrl, $params);
 		}
 		
 		if (empty($this->_serverUrl)) {
