@@ -26,5 +26,3 @@ jobs:
           mode: pr
           speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
           force: ${{ github.event.inputs.force }}
-          packagist_username: ${{ secrets.PACKAGIST_USERNAME }}
-          packagist_token: ${{ secrets.PACKAGIST_TOKEN }}
