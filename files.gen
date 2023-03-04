@@ -23,6 +23,5 @@ src/Models/Operations/SendEmailRequest.php
 src/Models/Operations/SendEmailResponse.php
 src/Models/Shared/SendEmailResponse.php
 src/Models/Shared/Email.php
-src/Models/Shared/SchemeBearerAuth.php
 src/Models/Shared/Security.php
 USAGE.md

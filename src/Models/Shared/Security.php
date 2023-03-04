@@ -8,11 +8,11 @@ use \ResendLabs\ResendSDK\Utils\SpeakeasyMetadata;
 
 class Security
 {
-    #[SpeakeasyMetadata('security:scheme=true,type=http,subtype=bearer')]
-    public SchemeBearerAuth $bearerAuth;
+    #[SpeakeasyMetadata('security:scheme=true,type=http,subtype=bearer,name=Authorization')]
+    public string $bearerAuth;
     
 	public function __construct()
 	{
-		$this->bearerAuth = new \ResendLabs\ResendSDK\Models\Shared\SchemeBearerAuth();
+		$this->bearerAuth = "";
 	}
 }
