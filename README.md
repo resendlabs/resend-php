@@ -39,8 +39,7 @@ use ResendLabs\ResendSDK\Models\Shared\SchemeBearerAuth;
 use ResendLabs\ResendSDK\Models\Operations\SendEmailRequest;
 
 $security = new Security();
-$security->bearerAuth = new SchemeBearerAuth();
-$security->bearerAuth->authorization = "Bearer YOUR_BEARER_TOKEN_HERE";
+$security->bearerAuth = "Bearer YOUR_BEARER_TOKEN_HERE";
 
 $sdk = Resend::builder()
     ->setSecurity($security)
