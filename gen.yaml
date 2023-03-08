@@ -2,12 +2,12 @@ configVersion: 1.0.0
 management:
   docChecksum: 70864ba961d69e4ff7e191e6d9b7401f
   docVersion: 0.1.1
-  speakeasyVersion: 1.8.5
+  speakeasyVersion: 1.8.6
 generation:
   telemetryEnabled: true
   sdkClassName: resend
   sdkFlattening: true
 php:
-  version: 1.6.4
+  version: 1.6.5
   namespace: ResendLabs\ResendSDK
   packageName: resendlabs/resend-php
