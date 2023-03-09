@@ -81,3 +81,35 @@ Based on:
 - Speakeasy CLI 1.8.2 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Composer v1.6.2] https://packagist.org/packages/resendlabs/resend-php#v1.6.2 - .
+
+## 2023-03-06 00:50:37
+### Changes
+Based on:
+- OpenAPI Doc 0.1.1 https://raw.githubusercontent.com/resendlabs/resend-openapi/main/resend.yaml
+- Speakeasy CLI 1.8.4 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Composer v1.6.3] https://packagist.org/packages/resendlabs/resend-php#v1.6.3 - .
+
+## 2023-03-07 00:54:14
+### Changes
+Based on:
+- OpenAPI Doc 0.1.1 https://raw.githubusercontent.com/resendlabs/resend-openapi/main/resend.yaml
+- Speakeasy CLI 1.8.5 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Composer v1.6.4] https://packagist.org/packages/resendlabs/resend-php#v1.6.4 - .
+
+## 2023-03-08 00:53:32
+### Changes
+Based on:
+- OpenAPI Doc 0.1.1 https://raw.githubusercontent.com/resendlabs/resend-openapi/main/resend.yaml
+- Speakeasy CLI 1.8.6 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Composer v1.6.5] https://packagist.org/packages/resendlabs/resend-php#v1.6.5 - .
+
+## 2023-03-09 00:53:03
+### Changes
+Based on:
+- OpenAPI Doc 0.1.1 https://raw.githubusercontent.com/resendlabs/resend-openapi/main/resend.yaml
+- Speakeasy CLI 1.8.7 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Composer v1.6.6] https://packagist.org/packages/resendlabs/resend-php#v1.6.6 - .
