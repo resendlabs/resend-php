@@ -113,3 +113,11 @@ Based on:
 - Speakeasy CLI 1.8.7 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Composer v1.6.6] https://packagist.org/packages/resendlabs/resend-php#v1.6.6 - .
+
+## 2023-03-10 00:52:17
+### Changes
+Based on:
+- OpenAPI Doc 0.1.1 https://raw.githubusercontent.com/resendlabs/resend-openapi/main/resend.yaml
+- Speakeasy CLI 1.9.1 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Composer v1.7.0] https://packagist.org/packages/resendlabs/resend-php#v1.7.0 - .
